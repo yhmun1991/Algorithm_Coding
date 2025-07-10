@@ -50,6 +50,8 @@ P 5 h 3 k x</pre>
 
 
 추가 ChatGPT 응닫
+
+```cpp
 #include <iostream>
 #include <string>
 #include <vector>
@@ -59,12 +61,12 @@ using namespace std;
 int main() {
     vector<string> board(5);
     int max_len = 0;
-    5줄 입력 받기
+
     for (int i = 0; i < 5; ++i) {
         cin >> board[i];
         max_len = max(max_len, (int)board[i].size());
     }
-    열 단위로 순회 (최대 열 길이만큼)
+
     for (int col = 0; col < max_len; ++col) {
         for (int row = 0; row < 5; ++row) {
             if (col < board[row].size()) {
@@ -75,3 +77,4 @@ int main() {
 
     return 0;
 }
+
