@@ -50,6 +50,8 @@ P 5 h 3 k x</pre>
 
 
 추가 ChatGPT 응닫
+
+
 #include <iostream>
 #include <string>
 #include <vector>
