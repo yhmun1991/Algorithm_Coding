@@ -155,3 +155,32 @@
 
  <p>첫째 줄에 최댓값을 출력하고, 둘째 줄에 최댓값이 위치한 행 번호와 열 번호를 빈칸을 사이에 두고 차례로 출력한다. 최댓값이 두 개 이상인 경우 그 중 한 곳의 위치를 출력한다.</p>
 
+
+
+ChatGPT응답
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int max_value = -1;
+    int max_row = 0, max_col = 0;
+    int num;
+
+    for (int row = 1; row <= 9; ++row) {
+        for (int col = 1; col <= 9; ++col) {
+            cin >> num;
+            if (num > max_value) {
+                max_value = num;
+                max_row = row;
+                max_col = col;
+            }
+        }
+    }
+
+    cout << max_value << "\n";
+    cout << max_row << " " << max_col << "\n";
+
+    return 0;
+}
