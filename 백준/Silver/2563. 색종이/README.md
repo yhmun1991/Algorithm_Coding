@@ -30,3 +30,35 @@
 
  <p>첫째 줄에 색종이가 붙은 검은 영역의 넓이를 출력한다.</p>
 
+ChatGPT응답
+
+```cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<vector<bool>> paper(100, vector<bool>(100, false));
+    int x, y;
+
+    while (n--) {
+        cin >> x >> y;
+        for (int i = x; i < x + 10; ++i) {
+            for (int j = y; j < y + 10; ++j) {
+                paper[i][j] = true;
+            }
+        }
+    }
+
+    int area = 0;
+    for (int i = 0; i < 100; ++i)
+        for (int j = 0; j < 100; ++j)
+            if (paper[i][j]) ++area;
+
+    cout << area << '\n';
+    return 0;
+}
