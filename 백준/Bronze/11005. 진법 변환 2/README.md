@@ -30,3 +30,52 @@
 
  <p>첫째 줄에 10진법 수 N을 B진법으로 출력한다.</p>
 
+ChatGPT응답
+
+```cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int N, B;
+    cin >> N >> B;
+
+    string result;
+
+    while (N > 0) {
+        int r = N % B;
+        result += (r < 10) ? (r + '0') : (r - 10 + 'A');
+        N /= B;
+    }
+
+    reverse(result.begin(), result.end());
+    cout << result << '\n';
+    return 0;
+}
+
+==================================================================
+
+#include <iostream>
+using namespace std;
+
+void convert(int N, int B) {
+    if (N == 0) return;
+
+    convert(N / B, B);
+    int r = N % B;
+    cout << (r < 10 ? char(r + '0') : char(r - 10 + 'A'));
+}
+
+int main() {
+    int N, B;
+    cin >> N >> B;
+
+    if (N == 0) cout << "0";
+    else convert(N, B);
+    
+    cout << '\n';
+    return 0;
+}
