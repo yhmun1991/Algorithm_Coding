@@ -62,3 +62,30 @@ int main() {
     cout << area << '\n';
     return 0;
 }
+=======================================================================
+
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    set<pair<int, int>> black;
+
+    while (n--) {
+        int x, y;
+        cin >> x >> y;
+
+        for (int i = x; i < x + 10; ++i) {
+            for (int j = y; j < y + 10; ++j) {
+                black.insert({i, j});
+            }
+        }
+    }
+
+    cout << black.size() << '\n';
+    return 0;
+}
