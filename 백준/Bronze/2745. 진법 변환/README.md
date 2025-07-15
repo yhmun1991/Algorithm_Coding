@@ -54,3 +54,21 @@ int main() {
     cout << result << '\n';
     return 0;
 }
+
+================================================================
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string N;
+    int B;
+    cin >> N >> B;
+
+    int result = stoi(N, nullptr, B);
+    cout << result << '\n';
+
+    return 0;
+}
