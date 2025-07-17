@@ -56,3 +56,45 @@
 
  <p>첫째 줄에 과정을 N번 거친 후 점의 수를 출력한다.</p>
 
+
+ChatGPT응답
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+    if (N < 0 || N > 15) return 0; // 범위 체크
+
+    int len = (1 << N) + 1;   // 2^N + 1
+    int points = len * len;   // 전체 점 개수
+
+    cout << points << "\n";
+    return 0;
+}
+
+=====================================================
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+    if (N < 0 || N > 15) return 0;
+
+    int side[16]; // 한 변 점 개수 저장
+    side[0] = 2;  // 초기 변 점 개수
+
+    for (int i = 1; i <= N; ++i) {
+        side[i] = side[i - 1] * 2 - 1;  // 점화식
+    }
+
+    int points = side[N] * side[N];
+    cout << points << "\n";
+
+    return 0;
+}
+
