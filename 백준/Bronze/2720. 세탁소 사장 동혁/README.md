@@ -106,3 +106,29 @@ int main() {
     }
     return 0;
 }
+
+
+
+=============================================================
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T; cin >> T;
+    int coins[4] = {25, 10, 5, 1};
+
+    while (T--) {
+        int C; cin >> C;
+        int counts[4] = {0,};
+
+        for (int i = 0; i < 4; i++) {
+            counts[i] = C / coins[i];
+            C %= coins[i];
+        }
+
+        cout << counts[0] << " " << counts[1] << " " << counts[2] << " " << counts[3] << "\n";
+    }
+
+    return 0;
+}
