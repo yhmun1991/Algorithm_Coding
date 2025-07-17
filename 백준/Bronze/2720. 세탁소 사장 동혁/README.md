@@ -36,3 +36,73 @@
 
  <p>각 테스트케이스에 대해 필요한 쿼터의 개수, 다임의 개수, 니켈의 개수, 페니의 개수를 공백으로 구분하여 출력한다.</p>
 
+ChatGPT응답
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T; 
+    cin >> T;
+
+    while (T--) {
+        int C; 
+        cin >> C;
+
+        int quarters = C / 25; 
+        C %= 25;
+
+        int dimes = C / 10; 
+        C %= 10;
+
+        int nickels = C / 5; 
+        C %= 5;
+
+        int pennies = C;
+
+        cout << quarters << " " << dimes << " " << nickels << " " << pennies << "\n";
+    }
+
+    return 0;
+}
+
+
+=====================================================
+
+#include <iostream>
+using namespace std;
+
+void giveChange(int amount, int& q, int& d, int& n, int& p) {
+    if (amount == 0) return;
+
+    if (amount >= 25) {
+        q += amount / 25;
+        amount %= 25;
+    }
+    else if (amount >= 10) {
+        d += amount / 10;
+        amount %= 10;
+    }
+    else if (amount >= 5) {
+        n += amount / 5;
+        amount %= 5;
+    }
+    else {
+        p += amount;
+        amount = 0;
+    }
+
+    giveChange(amount, q, d, n, p);
+}
+
+int main() {
+    int T; cin >> T;
+    while (T--) {
+        int C; cin >> C;
+        int q = 0, d = 0, n = 0, p = 0;
+        giveChange(C, q, d, n, p);
+        cout << q << " " << d << " " << n << " " << p << "\n";
+    }
+    return 0;
+}
