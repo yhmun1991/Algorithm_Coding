@@ -30,3 +30,17 @@
 
  <p>첫째 줄에 달팽이가 나무 막대를 모두 올라가는데 며칠이 걸리는지 출력한다.</p>
 
+ChatGPT응답
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int A, B, V;
+    cin >> A >> B >> V;
+
+    int day = (V - B - 1) / (A - B) + 1;
+    cout << day;
+    return 0;
+}
