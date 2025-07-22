@@ -83,3 +83,41 @@
 
  <p>첫째 줄에 분수를 출력한다.</p>
 
+
+ChatGPT응답
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x;
+    cin >> x;
+
+    int line = 1;
+    int sum = 1;
+
+    // x가 몇 번째 대각선(line)에 있는지 찾기
+    while (sum < x) {
+        line++;
+        sum += line;
+    }
+
+    // 해당 대각선에서 몇 번째 위치인지 (1-based)
+    int offset = x - (sum - line);
+    
+    int numerator, denominator;
+
+    if (line % 2 == 0) {
+        // 짝수 줄: 분자 ↑, 분모 ↓
+        numerator = offset;
+        denominator = line - offset + 1;
+    } else {
+        // 홀수 줄: 분자 ↓, 분모 ↑
+        numerator = line - offset + 1;
+        denominator = offset;
+    }
+
+    cout << numerator << "/" << denominator;
+    return 0;
+}
