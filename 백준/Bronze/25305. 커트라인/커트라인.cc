@@ -19,8 +19,8 @@ int main() {
     vector<int> vec_input, sorted_list;
     cin >> input_data_A >> input_data_A_1;
 
-    //if (input_data_A < 1 || input_data_A > 1000 || input_data_A_1 < 1 || input_data_A_1 > input_data_A)
-    //    return 0;
+    if (input_data_A < 1 || input_data_A > 1000 || input_data_A_1 < 1 || input_data_A_1 > input_data_A)
+        return 0;
 
     for (int i = 0; i < input_data_A; i++)
     {
