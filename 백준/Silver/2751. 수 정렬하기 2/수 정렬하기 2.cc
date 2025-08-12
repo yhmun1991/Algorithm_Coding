@@ -1,53 +1,31 @@
-#include <iostream>
-#include <stdio.h>
-#include <vector>
-#include <algorithm>
-#include <map>
-#include <cmath>
-#include <set>
-
+#include <bits/stdc++.h>
 using namespace std;
-struct linkedlist
-{
-    int* pre;
-    int value;
-    int* tail;
-};
+
+bitset<1000001> neg; // 음수 저장용
+bitset<1000001> pos; // 양수 저장용
 
 int main() {
-    ios_base::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int input_data_A = 0, input_data_A_1 = 0, input_data_B = 0, count = 0, tmp = 0;
-    vector<int> vec_input, sorted_list;
-    cin >> input_data_A;
 
-    if (input_data_A < 1 || input_data_A > 1000000)
-        return 0;
+    int N;
+    cin >> N;
 
-    for (int i = 0; i < input_data_A; i++)
-    {
-        cin >> input_data_B;
-        if (input_data_B < -1000000 || input_data_B > 1000000)
-            return 0;
-        vec_input.push_back(input_data_B);
+    for (int i = 0; i < N; i++) {
+        int x;
+        cin >> x;
+        if (x < 0) neg[-x] = 1; // -x 로 저장
+        else pos[x] = 1;       // 그대로 저장
     }
 
-    sort(vec_input.begin(), vec_input.end());
-
-    //for (int i = 1; i <vec_input.size(); i++)
-    //{
-    //    int data = vec_input.at(i);
-    //    int j = i-1;
-    //    
-    //    while (j >= 0 && vec_input.at(j) > data)
-    //    {
-    //        vec_input[j + 1] = vec_input[j];
-    //        j--;
-    //    } 
-    //    vec_input.at(j+1) = data;
-    //}
-
-    for(auto a : vec_input)
-        cout << a << '\n';
-    return 0;
+    // 음수 출력 (큰 값부터)
+    for (int i = 1000000; i >= 1; i--) {
+        if (neg[i]) cout << -i << '\n';
+    }
+    // 0 출력
+    if (pos[0]) cout << 0 << '\n';
+    // 양수 출력 (작은 값부터)
+    for (int i = 1; i <= 1000000; i++) {
+        if (pos[i]) cout << i << '\n';
+    }
 }
