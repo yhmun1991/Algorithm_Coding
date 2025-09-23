@@ -174,6 +174,8 @@ public:
     }
 };
 
+using FuncPtr = void (Queue_class::*)();
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -186,8 +188,6 @@ int main() {
     int min, max, Sum=0, count;
     min = 1;
     max = 1000;
-
-    using FuncPtr = void (Queue_class::*)();
 
     map<string, FuncPtr> command_Map;
     command_Map["pop"] = &Queue_class::pop;
