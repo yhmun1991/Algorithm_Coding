@@ -1,0 +1,182 @@
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <cmath>
+#include <set>
+#include <string>
+#include <cctype>
+#include <unordered_map>
+#include <unordered_set>
+#include <numeric>
+#include <list>
+#include <queue>
+
+
+#define CHAR_OFFSET 48
+#define VALIDFAIL -1
+using namespace std;
+
+
+class InputBase {//입력 클래스 생성
+public:
+    template<typename T>
+    bool Input(int count, vector<T>& inputData, int validOption, int min, int max) {
+        for (int i = 0; i < count; ++i) {
+            T data;
+
+            cin >> data;
+
+            if (!validCheck(validOption, data, min, max))
+                return false;
+
+            inputData.push_back(data);
+        }
+        return true;
+    }
+
+    bool validCheck(int aoption, int adata, int amin, int amax) {
+        bool ret = false;
+        switch (aoption) {
+        case 0:
+            if (adata < amin || adata > amax)
+                ret = false;
+            else
+                ret = true;
+            break;
+        default:
+            ret = true;
+        }
+
+        return ret;
+    }
+    bool validCheck(int aoption, long long adata, long long amin, long long amax) {
+        bool ret = false;
+        switch (aoption) {
+        case 0:
+            if (adata < amin || adata > amax)
+                ret = false;
+            else
+                ret = true;
+            break;
+        default:
+            ret = true;
+        }
+
+        return ret;
+    }
+
+    bool validCheck(int aoption, const string& adata, int amin, int amax) {
+        switch (aoption) {
+        case 0:
+            return true;
+        default:
+            return true;
+        }
+    }
+};
+
+class process {//처리 클래스
+public:
+    void run(vector<string>& aindata, vector<string>& outdata)
+    {
+        vector<int> vec_data, vec_distance;
+        int origin, first, second, count, result, tmp_data;
+        outdata.push_back("");
+        list<string> lst(aindata.begin(), aindata.end());
+        findTarget(lst, outdata, "KBS1", 0);
+        findTarget(lst, outdata, "KBS2", 1);
+        
+    }
+
+    void findTarget(list<string>& aindata, vector<string>& outdata, string target, int option)
+    {
+        int index;
+        auto it = std::find(aindata.begin(), aindata.end(), target);
+
+        if (it != aindata.end()) {
+            index = std::distance(aindata.begin(), it);
+        }
+        for (int i = 0; i < index; i++)
+        {
+            outdata[0].push_back('1');
+        }
+        for (int i = 0; i < index-option; i++)
+        {
+            outdata[0].push_back('4');
+        }
+        
+        string value = *it;
+        aindata.erase(it);
+        aindata.push_front(value);
+    }
+};
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+
+    int N, M, K, temp = 0, ret_A = 0, ret_B = 0;
+    bool flag_A = true, flag_B = true;
+
+    cin >> N >> M;
+
+    //if (N < 3 || M < 3) {
+    //    cout << -1;
+    //    return 0;
+    //}
+        
+
+    vector<vector<bool>> A(N, vector<bool>(M, false));
+    vector<vector<bool>> B(N, vector<bool>(M, false));
+
+    for (int i = 0; i < N; i++)
+    {
+        string temp;
+        cin >> temp;
+        for (int j = 0; j < M; j++)
+        {
+            A[i][j] = temp.at(j) == '0' ? false : true;
+        }
+    }
+
+    for (int i = 0; i < N; i++)
+    {
+        string temp;
+        cin >> temp;
+        for (int j = 0; j < M; j++)
+        {
+            B[i][j] = temp.at(j) == '0' ? false : true;
+        }
+    }
+
+    for (int i = 0; i <= N - 3; i++)
+    {
+        for (int j = 0; j <= M - 3; j++)
+        {
+            if (A[i][j] != B[i][j])
+            {
+                A[i][j] = !A[i][j];
+                A[i+1][j] = !A[i+1][j];
+                A[i+2][j] = !A[i+2][j];
+                A[i][j+1] = !A[i][j+1];
+                A[i][j+2] = !A[i][j+2];
+                A[i+1][j+1] = !A[i+1][j+1];
+                A[i+1][j+2] = !A[i+1][j+2];
+                A[i+2][j+1] = !A[i+2][j+1];
+                A[i+2][j+2] = !A[i+2][j+2];
+                ret_A++;
+            }
+        }
+    }
+
+    if (A == B)
+    {
+        cout << ret_A;
+    }
+    else
+        cout << -1;
+    
+}
